@@ -1,0 +1,14 @@
+example_usart.c:855:12:CompareTwoTextString	4
+example_usart.c:880:12:str2num	5
+example_usart.c:942:6:USART_Transmit	2
+example_usart.c:140:12:USART_SplitTextString	13
+example_usart.c:251:12:USART_CheckTextCommandBundle	66
+example_usart.c:922:6:USART_TxWelcomeMessage	1
+example_usart.c:981:6:USART_ITCharManager	5
+example_usart.c:1070:6:Fill_L6470_DaisyChainMnemonic	1
+example_usart.c:1108:6:num2str	7
+example_usart.c:1147:10:num2hex	7
+example_usart.c:754:11:USART_DecodeTextString	9
+example_usart.c:959:6:USART_CheckAppCmd	3
+example_usart.c:1019:6:USART_PrintRegisterValues	3
+example_usart.c:1050:6:USART_PrintAllRegisterValues	3
