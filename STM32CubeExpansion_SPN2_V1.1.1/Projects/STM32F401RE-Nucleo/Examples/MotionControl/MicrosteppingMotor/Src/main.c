@@ -33,9 +33,10 @@
   */
 
 #include "xnucleoihm02a1.h"
-#include "example.h"
+//#include "example.h"
 #include "example_usart.h"
 #include "stm32f4xx_hal_gpio.h"
+#include <stdbool.h>
 
 /**
   * @defgroup   MotionControl
@@ -61,16 +62,42 @@
   * @{
   */
 
-//#define MICROSTEPPING_MOTOR_EXAMPLE        //!< Uncomment to performe the standalone example
-#define MICROSTEPPING_MOTOR_USART_EXAMPLE  //!< Uncomment to performe the USART example
-#if ((defined (MICROSTEPPING_MOTOR_EXAMPLE)) && (defined (MICROSTEPPING_MOTOR_USART_EXAMPLE)))
+#define GPIO_POLLING_EXAMPLE        //!< Uncomment to performe the standalone example
+//#define MICROSTEPPING_MOTOR_USART_EXAMPLE  //!< Uncomment to performe the USART example
+#define GPIO_INTERRUPT_EXAMPLE
+#if ((defined (GPIO_POLLING_EXAMPLE)) && (defined (MICROSTEPPING_MOTOR_USART_EXAMPLE)))
   #error "Please select an option only!"
-#elif ((!defined (MICROSTEPPING_MOTOR_EXAMPLE)) && (!defined (MICROSTEPPING_MOTOR_USART_EXAMPLE)))
+#elif ((!defined (GPIO_POLLING_EXAMPLE)) && (!defined (MICROSTEPPING_MOTOR_USART_EXAMPLE)))
   #error "Please select an option!"
 #endif
 #if (defined (MICROSTEPPING_MOTOR_USART_EXAMPLE) && (!defined (NUCLEO_USE_USART)))
   #error "Please define "NUCLEO_USE_USART" in "stm32fxxx_x-nucleo-ihm02a1.h"!"
 #endif
+
+
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+	if (GPIO_Pin == GPIO_PIN_13)
+	{
+		static bool prev_val;
+		if (prev_val == false)
+		{
+			HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, GPIO_PIN_SET);
+			prev_val = true;
+		}
+		else
+		{
+			HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, GPIO_PIN_RESET);
+			prev_val = false;
+		}
+	}
+  /*switch (GPIO_Pin)
+  {
+  case GPIO_PIN_13:
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, GPIO_PIN_SET);
+    break;
+  }*/
+}
 
 /**
   * @}
@@ -85,47 +112,80 @@ int main(void)
   NUCLEO_Board_Init();
   
   /* X-NUCLEO-IHM02A1 initialization */
-  BSP_Init();
+  //BSP_Init();
   
-  // Configure PA10 as input
-  GPIO_InitTypeDef GPIO_InitStruct;
-  GPIO_InitStruct.Pin = GPIO_PIN_10;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_PULLUP;
-  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+  /* GPIO Ports Clock Enable */
+  __HAL_RCC_GPIOC_CLK_ENABLE();
+  __HAL_RCC_GPIOH_CLK_ENABLE();
+  __HAL_RCC_GPIOA_CLK_ENABLE();
+  __HAL_RCC_GPIOB_CLK_ENABLE();
 
-  // configure LED
-  GPIO_InitTypeDef GPIO_BRUH_InitStruct;
-  GPIO_InitStruct.Pin = GPIO_PIN_5;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
-  HAL_GPIO_Init(GPIOB, &GPIO_BRUH_InitStruct);
+  // Configure PC13 as input (onboard blue button)
+  GPIO_InitTypeDef PC13_InitStruct;
+  PC13_InitStruct.Pin = GPIO_PIN_13;
+  PC13_InitStruct.Mode = GPIO_MODE_IT_RISING;
+  PC13_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(GPIOC, &PC13_InitStruct);
 
-#ifdef NUCLEO_USE_USART
-  /* Transmit the initial message to the PC via UART */
-  USART_TxWelcomeMessage();
-#endif
-  
-#if defined (MICROSTEPPING_MOTOR_EXAMPLE)
+  // configure PB5 as output (for LED)
+  GPIO_InitTypeDef PB5_InitStruct;
+  PB5_InitStruct.Pin = GPIO_PIN_5;
+  PB5_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  PB5_InitStruct.Pull = GPIO_NOPULL;
+  PB5_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOB, &PB5_InitStruct);
+  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, GPIO_PIN_RESET);
+
+
+#if defined (GPIO_POLLING_EXAMPLE)
   /* Perform a batch commands for X-NUCLEO-IHM02A1 */
-  //MicrosteppingMotor_Example_01();
   
   /* Infinite loop */
-  while (1) {
-      // Read the button state
-      uint8_t buttonState = HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_10);
+  while (1){
+      uint8_t buttonState = HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13);
+      if(buttonState == GPIO_PIN_RESET) {
+    	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, GPIO_PIN_RESET);
+      }
 
+      /*
+      // Read the button state
+      uint8_t buttonState = HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13);
+      //HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, GPIO_PIN_SET);
       // Check if the button is pressed (active low)
+      //USART_Transmit(&huart2, (uint8_t* )"Button Read");
+
       if (buttonState == GPIO_PIN_RESET) {
           // Button is pressed
           // Do something
-          HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, GPIO_PIN_RESET);
+          HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, GPIO_PIN_SET);
+      } else {
+          // Button is not pressed
+    	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, GPIO_PIN_RESET);
+      }
+      */
+  }
 
+#elif defined (GPIO_INTERRUPT_EXAMPLE)
+  /* Perform a batch commands for X-NUCLEO-IHM02A1 */
+  //MicrosteppingMotor_Example_01();
+
+  /* Infinite loop */
+  while (1) {
+      // Read the button state
+      uint8_t buttonState = HAL_GPIO_ReadPin(GPIOC, GPIO_PIN_13);
+      //HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, GPIO_PIN_SET);
+      // Check if the button is pressed (active low)
+      //USART_Transmit(&huart2, (uint8_t* )"Button Read");
+
+      if (buttonState == GPIO_PIN_RESET) {
+          // Button is pressed
+          // Do something
+          HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, GPIO_PIN_SET);
       } else {
           // Button is not pressed
           // Do something else
     	  USART_Transmit(&huart2, (uint8_t* )"Button Pressed");
-    	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, GPIO_PIN_SET);
+    	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, GPIO_PIN_RESET);
       }
   }
 

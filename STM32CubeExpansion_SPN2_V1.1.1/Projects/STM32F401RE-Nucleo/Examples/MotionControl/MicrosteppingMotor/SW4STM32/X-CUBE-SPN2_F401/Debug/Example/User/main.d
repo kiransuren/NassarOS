@@ -3,7 +3,7 @@ Example/User/main.o: \
  ../../../../../../../../Drivers/BSP/X-NUCLEO-IHM02A1/xnucleoihm02a1.h \
  ../../../../../../../../Drivers/BSP/Components/L6470/L6470.h \
  ../../../../../../../../Drivers/BSP/Components/Common/microstepping_motor.h \
- ../../../Inc/example.h ../../../Inc/example_usart.h \
+ ../../../Inc/example_usart.h \
  ../../../../../../../../Drivers/BSP/X-NUCLEO-IHM02A1/NUCLEO-F401RE/xnucleoihm02a1_interface.h \
  ../../../../../../../../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h \
  ../../../../../../../../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f401xe.h \
@@ -36,7 +36,6 @@ Example/User/main.o: \
 ../../../../../../../../Drivers/BSP/X-NUCLEO-IHM02A1/xnucleoihm02a1.h:
 ../../../../../../../../Drivers/BSP/Components/L6470/L6470.h:
 ../../../../../../../../Drivers/BSP/Components/Common/microstepping_motor.h:
-../../../Inc/example.h:
 ../../../Inc/example_usart.h:
 ../../../../../../../../Drivers/BSP/X-NUCLEO-IHM02A1/NUCLEO-F401RE/xnucleoihm02a1_interface.h:
 ../../../../../../../../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h:
