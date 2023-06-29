@@ -1,0 +1,14 @@
+C:/Users/kiran/Desktop/MTE325/TwoAxisMachine_STM32/STM32CubeExpansion_SPN2_V1.1.1/Projects/STM32F401RE-Nucleo/Examples/MotionControl/MicrosteppingMotor/Src/example_usart.c:855:12:CompareTwoTextString	0	static
+C:/Users/kiran/Desktop/MTE325/TwoAxisMachine_STM32/STM32CubeExpansion_SPN2_V1.1.1/Projects/STM32F401RE-Nucleo/Examples/MotionControl/MicrosteppingMotor/Src/example_usart.c:880:12:str2num	4	static
+C:/Users/kiran/Desktop/MTE325/TwoAxisMachine_STM32/STM32CubeExpansion_SPN2_V1.1.1/Projects/STM32F401RE-Nucleo/Examples/MotionControl/MicrosteppingMotor/Src/example_usart.c:942:6:USART_Transmit	8	static
+C:/Users/kiran/Desktop/MTE325/TwoAxisMachine_STM32/STM32CubeExpansion_SPN2_V1.1.1/Projects/STM32F401RE-Nucleo/Examples/MotionControl/MicrosteppingMotor/Src/example_usart.c:140:12:USART_SplitTextString	40	static
+C:/Users/kiran/Desktop/MTE325/TwoAxisMachine_STM32/STM32CubeExpansion_SPN2_V1.1.1/Projects/STM32F401RE-Nucleo/Examples/MotionControl/MicrosteppingMotor/Src/example_usart.c:251:12:USART_CheckTextCommandBundle	72	static
+C:/Users/kiran/Desktop/MTE325/TwoAxisMachine_STM32/STM32CubeExpansion_SPN2_V1.1.1/Projects/STM32F401RE-Nucleo/Examples/MotionControl/MicrosteppingMotor/Src/example_usart.c:922:6:USART_TxWelcomeMessage	8	static
+C:/Users/kiran/Desktop/MTE325/TwoAxisMachine_STM32/STM32CubeExpansion_SPN2_V1.1.1/Projects/STM32F401RE-Nucleo/Examples/MotionControl/MicrosteppingMotor/Src/example_usart.c:981:6:USART_ITCharManager	8	static
+C:/Users/kiran/Desktop/MTE325/TwoAxisMachine_STM32/STM32CubeExpansion_SPN2_V1.1.1/Projects/STM32F401RE-Nucleo/Examples/MotionControl/MicrosteppingMotor/Src/example_usart.c:1070:6:Fill_L6470_DaisyChainMnemonic	16	static
+C:/Users/kiran/Desktop/MTE325/TwoAxisMachine_STM32/STM32CubeExpansion_SPN2_V1.1.1/Projects/STM32F401RE-Nucleo/Examples/MotionControl/MicrosteppingMotor/Src/example_usart.c:1108:6:num2str	8	static
+C:/Users/kiran/Desktop/MTE325/TwoAxisMachine_STM32/STM32CubeExpansion_SPN2_V1.1.1/Projects/STM32F401RE-Nucleo/Examples/MotionControl/MicrosteppingMotor/Src/example_usart.c:1147:10:num2hex	8	static
+C:/Users/kiran/Desktop/MTE325/TwoAxisMachine_STM32/STM32CubeExpansion_SPN2_V1.1.1/Projects/STM32F401RE-Nucleo/Examples/MotionControl/MicrosteppingMotor/Src/example_usart.c:754:11:USART_DecodeTextString	48	static
+C:/Users/kiran/Desktop/MTE325/TwoAxisMachine_STM32/STM32CubeExpansion_SPN2_V1.1.1/Projects/STM32F401RE-Nucleo/Examples/MotionControl/MicrosteppingMotor/Src/example_usart.c:959:6:USART_CheckAppCmd	8	static
+C:/Users/kiran/Desktop/MTE325/TwoAxisMachine_STM32/STM32CubeExpansion_SPN2_V1.1.1/Projects/STM32F401RE-Nucleo/Examples/MotionControl/MicrosteppingMotor/Src/example_usart.c:1019:6:USART_PrintRegisterValues	32	static
+C:/Users/kiran/Desktop/MTE325/TwoAxisMachine_STM32/STM32CubeExpansion_SPN2_V1.1.1/Projects/STM32F401RE-Nucleo/Examples/MotionControl/MicrosteppingMotor/Src/example_usart.c:1050:6:USART_PrintAllRegisterValues	24	static
