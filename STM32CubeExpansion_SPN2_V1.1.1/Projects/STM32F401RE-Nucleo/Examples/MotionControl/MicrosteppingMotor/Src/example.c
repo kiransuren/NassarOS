@@ -287,27 +287,22 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
     break;
   case GPIO_PIN_6:
 	  USART_Transmit(&huart2, (uint8_t* )"PA6 Limit Reached\n");
-      StepperMotorBoardHandle->StepperMotorDriverHandle[L6470_ID(0)]->Command->PrepareHardStop(L6470_ID(0));
-      StepperMotorBoardHandle->StepperMotorDriverHandle[L6470_ID(1)]->Command->PrepareHardStop(L6470_ID(1));
-      StepperMotorBoardHandle->Command->PerformPreparedApplicationCommand();
+	  L6470_HardStop(0);
 	  // PB3
 	 break;
   case GPIO_PIN_8:
 	  USART_Transmit(&huart2, (uint8_t* )"PA8 Limit Reached\n");
-      StepperMotorBoardHandle->StepperMotorDriverHandle[L6470_ID(0)]->Command->PrepareHardStop(L6470_ID(0));
-      StepperMotorBoardHandle->Command->PerformPreparedApplicationCommand();
+	  L6470_HardStop(0);
 	  // PB5
 	 break;
   case GPIO_PIN_9:
 	  USART_Transmit(&huart2, (uint8_t* )"PA9 Limit Reached\n");
-      StepperMotorBoardHandle->StepperMotorDriverHandle[L6470_ID(0)]->Command->PrepareHardStop(L6470_ID(0));
-      StepperMotorBoardHandle->Command->PerformPreparedApplicationCommand();
+	  L6470_HardStop(0);
 	  // PA8
 	 break;
   case GPIO_PIN_10:
 	  USART_Transmit(&huart2, (uint8_t* )"PA10 Limit Reached\n");
-      StepperMotorBoardHandle->StepperMotorDriverHandle[L6470_ID(0)]->Command->PrepareHardStop(L6470_ID(0));
-      StepperMotorBoardHandle->Command->PerformPreparedApplicationCommand();
+	  L6470_HardStop(0);
 	  // PA10
 	 break;
   }
