@@ -58,7 +58,7 @@
 /**
   * @brief  The data structure for all further instances to ADC.
   */
-ADC_HandleTypeDef hadc1;
+//ADC_HandleTypeDef hadc1;
 /**
   * @brief  The data structure for all further instances to SPI1.
   */
